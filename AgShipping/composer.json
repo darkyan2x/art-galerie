@@ -1,0 +1,22 @@
+{
+    "name": "artgalerie/module-agshipping",
+    "description": "",
+    "type": "magento2-module",
+    "license": "proprietary",
+    "authors": [
+        {
+            "email": "ryan.bansi@levaro.net",
+            "name": "ArtGalerie"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "ArtGalerie\\AgShipping\\": ""
+        }
+    }
+}

@@ -1,0 +1,85 @@
+<?php
+/**
+ * @var \ArtGalerie\AgCategory\Block\AllThemen $block
+ */
+
+$objectManager   = \Magento\Framework\App\ObjectManager::getInstance();
+
+$categories = getSubCategories(12392);
+?>
+<div class="container" style="margin-top: 200px;">
+	<div class="row">
+		<ul class="breadcrumb">
+		  <li><a href="/">All Themen</a></li>
+		  <li><a href="#">Themen</a></li>
+		</ul>
+		<p>Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs</p>
+		<div class="col-lg-4 com-md-4 col-sm-4 col-xs-12">
+			<div class="panel-block-row">
+				<div class="ag__promo-banner--wrapper ag__promo-banner-m promobanner zoom">
+                    <a href="#">
+						<img class="img-responsive"
+							src="http://ag.avidel.de/pub/media/catalog/product/u/w/uwe-steger-platzhirsch_wg_ig_4500.jpg" alt=""
+							data-src="http://ag.avidel.de/pub/media/catalog/product/u/w/uwe-steger-platzhirsch_wg_ig_4500.jpg">
+					</a>
+					<div class="ag__promo-banner ag__promo-banner--atomic-tangerine">
+						<h3>Static Elemen 1</h3>
+						<h5 class="sub-title ">Uwe Steger, Platzhirsch...</h5>
+						<a class="btn btn-default btn-transparent" href="#">Unsere Bestseller</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-4 com-md-4 col-sm-4 col-xs-12">
+			<div class="panel-block-row">
+				<div class="ag__promo-banner--wrapper ag__promo-banner-m promobanner zoom">
+                    <a href="#">
+						<img class="img-responsive"
+							src="http://ag.avidel.de/pub/media/wysiwyg/slider/Rectangle%205.png" alt=""
+							data-src="http://ag.avidel.de/pub/media/wysiwyg/slider/Rectangle%205.png">
+					</a>
+					<div class="ag__promo-banner ag__promo-banner--bitter-lemon">
+						<h3>Static Elemen 2</h3>
+						<h5 class="sub-title ">Edward Hooper, Portait of...</h5>
+						<a class="btn btn-default btn-transparent" href="#">Zu den Angeboten</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-4 com-md-4 col-sm-4 col-xs-12">
+			<div class="panel-block-row">
+				<div class="ag__promo-banner--wrapper ag__promo-banner-m promobanner zoom">
+                    <a href="#">
+						<img class="img-responsive"
+							src="http://ag.avidel.de/pub/media/wysiwyg/slider/Rectangle%206.png" alt=""
+							data-src="http://ag.avidel.de/pub/media/wysiwyg/slider/Rectangle%206.png">
+					</a>
+					<div class="ag__promo-banner ag__promo-banner--atomic-tangerine">
+						<h3>Static Elemen 3</h3>
+						<h5 class="sub-title ">33% auf alle Acrylglasbilder</h5>
+						<a class="btn btn-default btn-transparent" href="#">Zur Themenwelt</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<?php foreach($categories as $cat){ 
+                $object_manager = $objectManager->create('Magento\Catalog\Model\Category')->load($cat->getId());
+                if($object_manager->getImageUrl()){
+                    $category_image = $object_manager->getImageUrl();
+			    } else {
+			    	$category_image = 'http://ag.avidel.de/pub/media/catalog/category.jpg';
+			    }
+		?>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+        	<div class="panel-block-row">
+        		<div class="ag__promo-banner--wrapper ag__categorybanner promobanner zoom">
+        			<a href="<?php echo $object_manager->getUrl(); ?>"><img src="<?php echo $category_image; ?>" alt="Art gallery shop" width="100%" height="auto" /></a>
+            		<h3><?php echo $object_manager->getName(); ?></h3>
+        		</div>
+        	</div>
+        </div>
+		<?php } ?>
+	</div>
+</div>

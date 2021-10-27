@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * ArtGalerie_Grid Menu
+ *
+ * @category    ArtGalerie
+ * @package     ArtGalerie_Grid
+ * @author      ArtGalerie Software Private Limited
+ *
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+    	<!-- <update id="Magento_Reports::report" title="ArtGalerie" /> -->
+    	<add id="ArtGalerie_Grid::manager" title="Art-Galerie" module="ArtGalerie_Grid" sortOrder="70" resource="ArtGalerie_Grid::manager"/>
+    	<add id="ArtGalerie_Grid::menu1" title="Rahmen" module="ArtGalerie_Grid" sortOrder="10" parent="ArtGalerie_Grid::manager" resource="ArtGalerie_Grid::menu1"/>
+	    	<add id="ArtGalerie_Grid::add_row" title="Rahmen" module="ArtGalerie_Grid" sortOrder="10" parent="ArtGalerie_Grid::menu1" action="grid/grid/index" resource="ArtGalerie_Grid::add_row"/>
+	    	<add id="ArtGalerie_Grid::configurator_settings" title="Produktkonfigurator" module="ArtGalerie_Grid" sortOrder="15" parent="ArtGalerie_Grid::menu1" action="grid/license/configuratorsettings" resource="ArtGalerie_Grid::configurator_settings"/>
+	    	<add id="ArtGalerie_Grid::style" title="Stile" module="ArtGalerie_Grid" sortOrder="15" parent="ArtGalerie_Grid::menu1" action="grid/style/index" resource="ArtGalerie_Grid::style"/>
+	    	<add id="ArtGalerie_Grid::color" title="Farben" module="ArtGalerie_Grid" sortOrder="15" parent="ArtGalerie_Grid::menu1" action="grid/color/index" resource="ArtGalerie_Grid::color"/>
+	    	<add id="ArtGalerie_Grid::materiale" title="Materiale" module="ArtGalerie_Grid" sortOrder="15" parent="ArtGalerie_Grid::menu1" action="grid/materiale/index" resource="ArtGalerie_Grid::materiale"/>
+            <add id="ArtGalerie_Grid::klassen" title="Klassen" module="ArtGalerie_Grid" sortOrder="15" parent="ArtGalerie_Grid::menu1" action="grid/klassen/index" resource="ArtGalerie_Grid::klassen"/>
+            <add id="ArtGalerie_Grid::size" title="Sizes" module="ArtGalerie_Grid" sortOrder="15" parent="ArtGalerie_Grid::menu1" action="grid/size/index" resource="ArtGalerie_Grid::size"/>
+
+	    <add id="ArtGalerie_Grid::menu3" title="Preise" module="ArtGalerie_Grid" sortOrder="30" parent="ArtGalerie_Grid::manager" resource="ArtGalerie_Grid::menu3"/>
+	    	<add id="ArtGalerie_Grid::gerahmtebilder" title="Gerahmte Bilder" module="ArtGalerie_Grid" sortOrder="10" parent="ArtGalerie_Grid::menu3" action="grid/gerahmtebilder/index" resource="ArtGalerie_Grid::gerahmtebilder"/>
+            <add id="ArtGalerie_Grid::acrylglasbilder" title="Acrylglas Bilder" module="ArtGalerie_Grid" sortOrder="10" parent="ArtGalerie_Grid::menu3" action="grid/acrylglasbilder/index" resource="ArtGalerie_Grid::acrylglasbilder"/>
+            <add id="ArtGalerie_Grid::aludibondbilder" title="Alu-Dibond Bilder" module="ArtGalerie_Grid" sortOrder="10" parent="ArtGalerie_Grid::menu3" action="grid/aludibondbilder/index" resource="ArtGalerie_Grid::aludibondbilder"/>
+            <add id="ArtGalerie_Grid::leinwandbilder" title="Leinwand Bilder" module="ArtGalerie_Grid" sortOrder="10" parent="ArtGalerie_Grid::menu3" action="grid/leinwandbilder/index" resource="ArtGalerie_Grid::leinwandbilder"/>
+            <add id="ArtGalerie_Grid::kunstdruck" title="Kunstdruck" module="ArtGalerie_Grid" sortOrder="10" parent="ArtGalerie_Grid::menu3" action="grid/kunstdruck/index" resource="ArtGalerie_Grid::kunstdruck"/>
+
+        <add id="ArtGalerie_Grid::menu4" title="Versandkosten" module="ArtGalerie_Grid" sortOrder="15" parent="ArtGalerie_Grid::manager" resource="ArtGalerie_Grid::menu4"/>
+	    	<add id="ArtGalerie_Grid::versandkosten" title="Versandkosten" module="ArtGalerie_Grid" sortOrder="10" parent="ArtGalerie_Grid::menu4" action="grid/versandkosten/index" resource="ArtGalerie_Grid::versandkosten"/>
+
+
+    </menu>
+</config>

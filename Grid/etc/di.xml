@@ -1,0 +1,134 @@
+<!--
+/** Grid di xml
+ * @category  ArtGalerie
+ * @package   ArtGalerie_Grid
+ * @author    ArtGalerie
+ * @copyright Copyright (c) 2010-2017 ArtGalerie Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="ArtGalerie\Grid\Api\Data\GridInterface" type="ArtGalerie\Grid\Model\Grid" />
+ 
+    <virtualType name="ArtGalerie\Grid\Model\ResourceModel\Grid\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">ag_frames</argument>
+            <argument name="resourceModel" xsi:type="string">ArtGalerie\Grid\Model\ResourceModel\Grid</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="ArtGalerie\Grid\Model\ResourceModel\Grid\License\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">ag_license</argument>
+            <argument name="resourceModel" xsi:type="string">ArtGalerie\Grid\Model\ResourceModel\License</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="ArtGalerie\Grid\Model\ResourceModel\Grid\Style\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">ag_style</argument>
+            <argument name="resourceModel" xsi:type="string">ArtGalerie\Grid\Model\ResourceModel\Style</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="ArtGalerie\Grid\Model\ResourceModel\Grid\Color\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">ag_color</argument>
+            <argument name="resourceModel" xsi:type="string">ArtGalerie\Grid\Model\ResourceModel\Color</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="ArtGalerie\Grid\Model\ResourceModel\Grid\Width\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">ag_width</argument>
+            <argument name="resourceModel" xsi:type="string">ArtGalerie\Grid\Model\ResourceModel\Width</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="ArtGalerie\Grid\Model\ResourceModel\Grid\Materiale\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">ag_materiale</argument>
+            <argument name="resourceModel" xsi:type="string">ArtGalerie\Grid\Model\ResourceModel\Materiale</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="ArtGalerie\Grid\Model\ResourceModel\Grid\GerahmteBilder\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">ag__dyn_pricing_framed_picture</argument>
+            <argument name="resourceModel" xsi:type="string">ArtGalerie\Grid\Model\ResourceModel\GerahmteBilder</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="ArtGalerie\Grid\Model\ResourceModel\Grid\AcrylglasBilder\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">ag__dyn_pricing_acrylicglass_picture</argument>
+            <argument name="resourceModel" xsi:type="string">ArtGalerie\Grid\Model\ResourceModel\AcrylglasBilder</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="ArtGalerie\Grid\Model\ResourceModel\Grid\AluDibondBilder\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">ag__dyn_pricing_aludibond_picture</argument>
+            <argument name="resourceModel" xsi:type="string">ArtGalerie\Grid\Model\ResourceModel\AluDibondBilder</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="ArtGalerie\Grid\Model\ResourceModel\Grid\LeinwandBilder\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">ag__dyn_pricing_canvas_picture</argument>
+            <argument name="resourceModel" xsi:type="string">ArtGalerie\Grid\Model\ResourceModel\LeinwandBilder</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="ArtGalerie\Grid\Model\ResourceModel\Grid\Kunstdruck\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">ag__dyn_pricing_digitalprint_picture</argument>
+            <argument name="resourceModel" xsi:type="string">ArtGalerie\Grid\Model\ResourceModel\Kunstdruck</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="ArtGalerie\Grid\Model\ResourceModel\Grid\Klassen\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">ag__klassen</argument>
+            <argument name="resourceModel" xsi:type="string">ArtGalerie\Grid\Model\ResourceModel\Klassen</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="ArtGalerie\Grid\Model\ResourceModel\Grid\Size\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">ag__sizes</argument>
+            <argument name="resourceModel" xsi:type="string">ArtGalerie\Grid\Model\ResourceModel\Size</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="grid_record_grid_list_data_source" xsi:type="string">ArtGalerie\Grid\Model\ResourceModel\Grid\Grid\Collection</item>
+            </argument>
+            <argument name="collections" xsi:type="array">
+                <item name="grid_record_configurator_settings_data_source" xsi:type="string">ArtGalerie\Grid\Model\ResourceModel\Grid\License\Collection</item>
+            </argument>
+            <argument name="collections" xsi:type="array">
+                <item name="grid_record_style_data_source" xsi:type="string">ArtGalerie\Grid\Model\ResourceModel\Grid\Style\Collection</item>
+            </argument>
+            <argument name="collections" xsi:type="array">
+                <item name="grid_record_color_data_source" xsi:type="string">ArtGalerie\Grid\Model\ResourceModel\Grid\Color\Collection</item>
+            </argument>
+            <argument name="collections" xsi:type="array">
+                <item name="grid_record_width_data_source" xsi:type="string">ArtGalerie\Grid\Model\ResourceModel\Grid\Width\Collection</item>
+            </argument>
+            <argument name="collections" xsi:type="array">
+                <item name="grid_record_materiale_data_source" xsi:type="string">ArtGalerie\Grid\Model\ResourceModel\Grid\Materiale\Collection</item>
+            </argument>
+            <argument name="collections" xsi:type="array">
+                <item name="grid_record_gerahmtebilder_data_source" xsi:type="string">ArtGalerie\Grid\Model\ResourceModel\Grid\GerahmteBilder\Collection</item>
+            </argument>
+            <argument name="collections" xsi:type="array">
+                <item name="grid_record_acrylglasbilder_data_source" xsi:type="string">ArtGalerie\Grid\Model\ResourceModel\Grid\AcrylglasBilder\Collection</item>
+            </argument>
+            <argument name="collections" xsi:type="array">
+                <item name="grid_record_aludibondbilder_data_source" xsi:type="string">ArtGalerie\Grid\Model\ResourceModel\Grid\AluDibondBilder\Collection</item>
+            </argument>
+            <argument name="collections" xsi:type="array">
+                <item name="grid_record_leinwandbilder_data_source" xsi:type="string">ArtGalerie\Grid\Model\ResourceModel\Grid\LeinwandBilder\Collection</item>
+            </argument>
+            <argument name="collections" xsi:type="array">
+                <item name="grid_record_kunstdruck_data_source" xsi:type="string">ArtGalerie\Grid\Model\ResourceModel\Grid\Kunstdruck\Collection</item>
+            </argument>
+            <argument name="collections" xsi:type="array">
+                <item name="grid_record_klassen_data_source" xsi:type="string">ArtGalerie\Grid\Model\ResourceModel\Grid\Klassen\Collection</item>
+            </argument>
+            <argument name="collections" xsi:type="array">
+                <item name="grid_record_size_data_source" xsi:type="string">ArtGalerie\Grid\Model\ResourceModel\Grid\Size\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

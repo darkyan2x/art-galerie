@@ -1,0 +1,16 @@
+{
+    "name": "artgalerie/frames",
+    "description": "AG Magento2 integration",
+    "require": {
+      "artgalerie/integrator":"^1.0.0"
+    },
+    "license": [
+      "EULA"
+    ],
+    "autoload": {
+      "files": [ "registration.php" ],
+      "psr-4": {
+        "ArtGalerie\\Frames\\": ""
+      }
+    }
+  }

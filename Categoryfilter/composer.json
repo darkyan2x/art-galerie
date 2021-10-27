@@ -1,0 +1,22 @@
+{
+    "name": "artgalerie/categoryfilter",
+    "description": "Module for AG",
+    "type": "magento2-module",
+    "license": "GPL-3.0",
+    "authors": [
+        {
+            "email": "ryanletterbee@gmail.com",
+            "name": "Ryan"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "ArtGalerie\\Categoryfilter\\": ""
+        }
+    }
+}

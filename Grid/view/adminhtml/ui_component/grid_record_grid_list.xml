@@ -1,0 +1,397 @@
+<!--
+/**
+ * Grid record list UI Component
+ * @category  ArtGalerie
+ * @package   ArtGalerie_Grid
+ * @author    ArtGalerie
+ * @copyright Copyright (c) 2010-2017 ArtGalerie Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html
+ */
+-->
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Ui/etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">grid_record_grid_list.grid_record_grid_list_data_source</item>
+            <item name="deps" xsi:type="string">grid_record_grid_list.grid_record_grid_list_data_source</item>
+        </item>
+        <item name="spinner" xsi:type="string">grid_records_columns</item>
+        <item name="buttons" xsi:type="array">
+            <item name="add" xsi:type="array">
+                <item name="name" xsi:type="string">add</item>
+                <item name="label" xsi:type="string" translate="true">Add New Frame</item>
+                <item name="class" xsi:type="string">primary</item>
+                <item name="url" xsi:type="string">*/*/addrow</item>
+            </item>
+        </item>
+    </argument>
+    <dataSource name="grid_record_grid_list_data_source">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider</argument>
+            <argument name="name" xsi:type="string">grid_record_grid_list_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">frame_id</argument>
+            <argument name="requestFieldName" xsi:type="string">id</argument>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="update_url" xsi:type="url" path="mui/index/render"/>
+                </item>
+            </argument>
+        </argument>
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/grid/provider</item>
+            </item>
+        </argument>
+    </dataSource>
+    <container name="listing_top">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="template" xsi:type="string">ui/grid/toolbar</item>
+                <item name="stickyTmpl" xsi:type="string">ui/grid/sticky/toolbar</item>
+            </item>
+        </argument>
+        <bookmark name="bookmarks"/>
+        <columnsControls name="columns_controls"/>
+        <filters name="listing_filters">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="columnsProvider" xsi:type="string">grid_record_grid_list.grid_record_grid_list.grid_records_columns</item>
+                    <item name="storageConfig" xsi:type="array">
+                        <item name="provider" xsi:type="string">grid_record_grid_list.grid_record_grid_list.listing_top.bookmarks</item>
+                        <item name="namespace" xsi:type="string">current.filters</item>
+                    </item>
+                    <item name="templates" xsi:type="array">
+                        <item name="filters" xsi:type="array">
+                            <item name="select" xsi:type="array">
+                                <item name="component" xsi:type="string">Magento_Ui/js/form/element/ui-select</item>
+                                <item name="template" xsi:type="string">ui/grid/filters/elements/ui-select</item>
+                            </item>
+                        </item>
+                    </item>
+                    <item name="childDefaults" xsi:type="array">
+                        <item name="provider" xsi:type="string">grid_record_grid_list.grid_record_grid_list.listing_top.listing_filters</item>
+                        <item name="imports" xsi:type="array">
+                            <item name="visible" xsi:type="string">grid_record_grid_list.grid_record_grid_list.grid_records_columns.${ $.index }:visible</item>
+                        </item>
+                    </item>
+                </item>
+
+                <item name="observers" xsi:type="array">
+                    <item name="column" xsi:type="string">column</item>
+                </item>
+            </argument>
+            <filterSelect name="store_id">
+                <argument name="optionsProvider" xsi:type="configurableObject">
+                    <argument name="class" xsi:type="string">Magento\Cms\Ui\Component\Listing\Column\Cms\Options</argument>
+                </argument>
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="provider" xsi:type="string">${ $.parentName }</item>
+                        <item name="imports" xsi:type="array">
+                            <item name="visible" xsi:type="string">componentType = column, index = ${ $.index }:visible</item>
+                        </item>
+                        <item name="dataScope" xsi:type="string">store_id</item>
+                        <item name="label" xsi:type="string" translate="true">Store View</item>
+                        <item name="captionValue" xsi:type="string">0</item>
+                    </item>
+                </argument>
+            </filterSelect>
+
+        </filters>
+        <massaction name="listing_massaction">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="selectProvider" xsi:type="string">grid_record_grid_list.grid_record_grid_list.grid_records_columns.ids</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/tree-massactions</item>
+                    <item name="indexField" xsi:type="string">id</item>
+                </item>
+            </argument>
+            <!-- Mass actions which you want to add in your grid-->
+            <action name="delete">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="type" xsi:type="string">delete</item>
+                        <item name="label" xsi:type="string" translate="true">Delete</item>
+                        <item name="url" xsi:type="url" path="grid/grid/massdelete"/>
+                        <item name="confirm" xsi:type="array">
+                            <item name="title" xsi:type="string" translate="true">Delete</item>
+                            <item name="message" xsi:type="string" translate="true">Do you want to delete selected row record?</item>
+                        </item>
+                    </item>
+                </argument>
+            </action>
+            <action name="status">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="type" xsi:type="string">status</item>
+                        <item name="label" xsi:type="string" translate="true">Change status</item>
+                    </item>
+                </argument>
+                <argument name="actions" xsi:type="array">
+                    <item name="0" xsi:type="array">
+                        <item name="type" xsi:type="string">enable</item>
+                        <item name="label" xsi:type="string" translate="true">Enable</item>
+                        <item name="url" xsi:type="url" path="grid/grid/massstatus">
+                            <param name="status">1</param>
+                        </item>
+                    </item>
+                    <item name="1" xsi:type="array">
+                        <item name="type" xsi:type="string">disable</item>
+                        <item name="label" xsi:type="string" translate="true">Disable</item>
+                        <item name="url" xsi:type="url" path="grid/grid/massstatus">
+                            <param name="status">0</param>
+                        </item>
+                    </item>
+                </argument>
+            </action>
+        </massaction>
+        <paging name="listing_paging">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="storageConfig" xsi:type="array">
+                        <item name="provider" xsi:type="string">grid_record_grid_list.grid_record_grid_list.listing_top.bookmarks</item>
+                        <item name="namespace" xsi:type="string">current.paging</item>
+                    </item>
+                    <item name="selectProvider" xsi:type="string">grid_record_grid_list.grid_record_grid_list.frames_columns.ids</item>
+                </item>
+            </argument>
+        </paging>
+    </container>
+    <columns name="grid_records_columns">
+        <selectionsColumn name="ids">
+           <argument name="data" xsi:type="array">
+               <item name="config" xsi:type="array">
+                   <item name="indexField" xsi:type="string">frame_id</item>
+                   <item name="sorting" xsi:type="string">desc</item>
+                   <item name="sortOrder" xsi:type="number">0</item>
+               </item>
+           </argument>
+       </selectionsColumn>
+       <column name="frame_name">
+           <argument name="data" xsi:type="array">
+               <item name="config" xsi:type="array">
+                   <item name="filter" xsi:type="string">textRange</item>
+                   <item name="label" xsi:type="string" translate="true">Frame Name</item>
+                   <item name="sortOrder" xsi:type="number">10</item>
+               </item>
+           </argument>
+       </column>
+       <column name="material_type">
+           <argument name="data" xsi:type="array">
+               <item name="config" xsi:type="array">
+                   <item name="filter" xsi:type="string">textRange</item>
+                   <item name="label" xsi:type="string" translate="true">Material Type</item>
+                   <item name="sortOrder" xsi:type="number">20</item>
+               </item>
+           </argument>
+       </column>
+       <column name="thickness">
+           <argument name="data" xsi:type="array">
+               <item name="config" xsi:type="array">
+                   <item name="filter" xsi:type="string">textRange</item>
+                   <item name="label" xsi:type="string" translate="true">Width (cm)</item>
+                   <item name="sortOrder" xsi:type="number">30</item>
+               </item>
+           </argument>
+       </column>
+       <column name="weight">
+           <argument name="data" xsi:type="array">
+               <item name="config" xsi:type="array">
+                   <item name="filter" xsi:type="string">textRange</item>
+                   <item name="label" xsi:type="string" translate="true">Weight (lb)</item>
+                   <item name="sortOrder" xsi:type="number">30</item>
+               </item>
+           </argument>
+       </column>
+       <!-- Image Column -->
+        <column name="frame_image" class="ArtGalerie\Grid\Ui\Component\Listing\Grid\Column\Thumbnail">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                   <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/thumbnail</item>
+                   <item name="filter" xsi:type="string">false</item>
+                   <item name="sortable" xsi:type="boolean">false</item>
+                   <item name="altField" xsi:type="string">frame</item>
+                   <item name="has_preview" xsi:type="string">1</item>
+                   <item name="label" xsi:type="string" translate="true">Frame Image</item>
+                   <item name="resizeEnabled" xsi:type="boolean">true</item>
+                   <item name="resizeDefaultWidth" xsi:type="string">300</item>
+                   <item name="sortOrder" xsi:type="number">40</item>
+                </item>
+            </argument>
+       </column>
+       <column name="frame_edge" class="ArtGalerie\Grid\Ui\Component\Listing\Grid\Column\FrameEdgeThumbnail">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                   <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/thumbnail</item>
+                   <item name="filter" xsi:type="string">false</item>
+                   <item name="sortable" xsi:type="boolean">false</item>
+                   <item name="altField" xsi:type="string">frame_edge</item>
+                   <item name="has_preview" xsi:type="string">1</item>
+                   <item name="label" xsi:type="string" translate="true">Frame Edge</item>
+                   <item name="resizeEnabled" xsi:type="boolean">true</item>
+                   <item name="resizeDefaultWidth" xsi:type="string">300</item>
+                   <item name="sortOrder" xsi:type="number">50</item>
+                </item>
+            </argument>
+       </column>
+       <column name="klassen_id" >
+           <argument name="data" xsi:type="array">
+               <item name="options" xsi:type="object">ArtGalerie\Grid\Model\FrameKlassen</item>
+               <item name="config" xsi:type="array">
+                   <item name="filter" xsi:type="string">select</item>
+                   <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/select</item>
+                   <item name="dataType" xsi:type="string">select</item>
+                   <item name="label" xsi:type="string" translate="true">Klassen</item>
+                   <item name="sortOrder" xsi:type="number">70</item>
+               </item>
+           </argument>
+       </column>
+       <column name="is_active" >
+           <argument name="data" xsi:type="array">
+               <item name="options" xsi:type="object">ArtGalerie\Grid\Model\Status</item>
+               <item name="config" xsi:type="array">
+                   <item name="filter" xsi:type="string">select</item>
+                   <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/select</item>
+                   <item name="dataType" xsi:type="string">select</item>
+                   <item name="label" xsi:type="string" translate="true">Is Active</item>
+                   <item name="sortOrder" xsi:type="number">70</item>
+               </item>
+           </argument>
+       </column>
+       <column name="style_id" >
+           <argument name="data" xsi:type="array">
+               <item name="options" xsi:type="object">ArtGalerie\Grid\Model\FrameStyle</item>
+               <item name="config" xsi:type="array">
+                   <item name="filter" xsi:type="string">select</item>
+                   <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/select</item>
+                   <item name="dataType" xsi:type="string">select</item>
+                   <item name="label" xsi:type="string" translate="true">Style</item>
+                   <item name="sortOrder" xsi:type="number">70</item>
+               </item>
+           </argument>
+       </column>
+       <column name="color_id" >
+           <argument name="data" xsi:type="array">
+               <item name="options" xsi:type="object">ArtGalerie\Grid\Model\FrameColor</item>
+               <item name="config" xsi:type="array">
+                   <item name="filter" xsi:type="string">select</item>
+                   <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/select</item>
+                   <item name="dataType" xsi:type="string">select</item>
+                   <item name="label" xsi:type="string" translate="true">Color</item>
+                   <item name="sortOrder" xsi:type="number">70</item>
+               </item>
+           </argument>
+       </column>
+       <column name="materiale_id" >
+           <argument name="data" xsi:type="array">
+               <item name="options" xsi:type="object">ArtGalerie\Grid\Model\FrameMateriale</item>
+               <item name="config" xsi:type="array">
+                   <item name="filter" xsi:type="string">select</item>
+                   <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/select</item>
+                   <item name="dataType" xsi:type="string">select</item>
+                   <item name="label" xsi:type="string" translate="true">Material</item>
+                   <item name="sortOrder" xsi:type="number">70</item>
+               </item>
+           </argument>
+       </column>
+       <column name="category_id" >
+           <argument name="data" xsi:type="array">
+               <item name="options" xsi:type="object">ArtGalerie\Grid\Model\Categories</item>
+               <item name="config" xsi:type="array">
+                   <item name="filter" xsi:type="string">select</item>
+                   <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/select</item>
+                   <item name="dataType" xsi:type="string">select</item>
+                   <item name="label" xsi:type="string" translate="true">Category</item>
+                   <item name="sortOrder" xsi:type="number">100</item>
+               </item>
+           </argument>
+       </column>
+       <column name="description">
+           <argument name="data" xsi:type="array">
+               <item name="config" xsi:type="array">
+                   <item name="filter" xsi:type="string">textRange</item>
+                   <item name="label" xsi:type="string" translate="true">Description</item>
+                   <item name="sortOrder" xsi:type="number">110</item>
+               </item>
+           </argument>
+       </column>
+       <column name="highlight" >
+           <argument name="data" xsi:type="array">
+               <item name="options" xsi:type="object">ArtGalerie\Grid\Model\Highlight</item>
+               <item name="config" xsi:type="array">
+                   <item name="filter" xsi:type="string">select</item>
+                   <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/select</item>
+                   <item name="dataType" xsi:type="string">select</item>
+                   <item name="label" xsi:type="string" translate="true">Highlight</item>
+                   <item name="sortOrder" xsi:type="number">120</item>
+               </item>
+           </argument>
+       </column>
+       <column name="frame_type" >
+           <argument name="data" xsi:type="array">
+               <item name="options" xsi:type="object">ArtGalerie\Grid\Model\FrameType</item>
+               <item name="config" xsi:type="array">
+                   <item name="filter" xsi:type="string">select</item>
+                   <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/select</item>
+                   <item name="dataType" xsi:type="string">select</item>
+                   <item name="label" xsi:type="string" translate="true">Frame Type</item>
+                   <item name="sortOrder" xsi:type="number">130</item>
+               </item>
+           </argument>
+       </column>
+       <column name="canvas_availability" >
+           <argument name="data" xsi:type="array">
+               <item name="options" xsi:type="object">ArtGalerie\Grid\Model\CanvasAvailability</item>
+               <item name="config" xsi:type="array">
+                   <item name="filter" xsi:type="string">select</item>
+                   <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/select</item>
+                   <item name="dataType" xsi:type="string">select</item>
+                   <item name="label" xsi:type="string" translate="true">Canvas Availability</item>
+                   <item name="sortOrder" xsi:type="number">140</item>
+               </item>
+           </argument>
+       </column>
+       <column name="publish_date" class="Magento\Ui\Component\Listing\Columns\Date" >
+           <argument name="data" xsi:type="array">
+               <item name="config" xsi:type="array">
+                   <item name="filter" xsi:type="string">dateRange</item>
+                   <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/date</item>
+                   <item name="dataType" xsi:type="string">date</item>
+                   <item name="label" xsi:type="string" translate="true">Publish Date</item>
+                   <item name="sortOrder" xsi:type="number">150</item>
+               </item>
+           </argument>
+       </column>
+       <column name="update_time" class="Magento\Ui\Component\Listing\Columns\Date" >
+           <argument name="data" xsi:type="array">
+               <item name="config" xsi:type="array">
+                   <item name="filter" xsi:type="string">dateRange</item>
+                   <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/date</item>
+                   <item name="dataType" xsi:type="string">date</item>
+                   <item name="label" xsi:type="string" translate="true">Update Time</item>
+                   <item name="sortOrder" xsi:type="number">160</item>
+               </item>
+           </argument>
+       </column>
+       <column name="created_at" class="Magento\Ui\Component\Listing\Columns\Date" >
+           <argument name="data" xsi:type="array">
+               <item name="config" xsi:type="array">
+                   <item name="filter" xsi:type="string">dateRange</item>
+                   <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/date</item>
+                   <item name="dataType" xsi:type="string">date</item>
+                   <item name="label" xsi:type="string" translate="true">Created At</item>
+                   <item name="sortOrder" xsi:type="number">170</item>
+               </item>
+           </argument>
+       </column>
+       <!-- Add Action with each row of grid and for this we will create a class Action -->
+        <actionsColumn name="actions" class="ArtGalerie\Grid\Ui\Component\Listing\Grid\Column\Action">
+           <argument name="data" xsi:type="array">
+               <item name="config" xsi:type="array">
+                   <item name="sortable" xsi:type="boolean">false</item>
+                   <item name="indexField" xsi:type="string">frame_id</item>
+                   <item name="sortOrder" xsi:type="number">180</item>
+               </item>
+           </argument>
+       </actionsColumn>
+    </columns>
+</listing>
